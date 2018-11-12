@@ -5,7 +5,7 @@
 #    Также вывести итоговую сумму за каждый товар.
 # 2. Вычислить и вывести на экран итоговую сумму всех покупок в "корзине".
 
-basket = {}
+cart = {}
 product_sum = 0
 total_sum = 0
 
@@ -17,15 +17,19 @@ loop do
   print 'Введите цену товара: '
   price = gets.to_f
   print 'Введите количество товара: '
-  count = gets.to_f
+  quantity = gets.to_f
 
-  product_sum = price * count
-  basket[name] = { price => count }
-  total_sum += product_sum
-
-  puts "---------------------------"
-  puts "Стоимость текущего товара = #{product_sum}"
-  puts "В корзине сейчас находится: #{basket}"
-  puts "Стоимость всех товаров в корзине = #{total_sum}"
-  puts "---------------------------"
+  cart[name] = { price: price, quantity: quantity }
 end
+
+puts "Название товара | Цена за ед. | Количество товара | Сумма за товар"
+puts "------------------------------------------------------------------"
+
+cart.each do |key, value|
+  product_sum = value[:price] * value[:quantity]
+  puts "#{key} | #{value[:price]} | #{value[:quantity]} | #{product_sum}"
+  total_sum += product_sum
+end
+
+puts "------------------------------------------------------------------"
+puts "Итоговая стоимость всех покупок в 'корзине': #{total_sum} руб."

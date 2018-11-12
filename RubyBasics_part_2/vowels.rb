@@ -2,12 +2,12 @@
 
 alphabet = ('а'..'я').to_a
 alphabet.insert(6, 'ё')
-vowels_arr = ['а', 'е', 'ё', 'и', 'о', 'у', 'ы', 'э', 'ю', 'я']
+vowels_arr = %w[а е ё и о у ы э ю я]
 vowels_hash = {}
 
-alphabet.each_with_index do |value, index|
-  if vowels_arr.include?(alphabet[index])
-    vowels_hash[value] = index + 1
+alphabet.each.with_index(1) do |value, index|
+  if vowels_arr.include?(value)
+    vowels_hash[value] = index
   end
 end
 

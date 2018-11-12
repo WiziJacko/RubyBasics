@@ -22,7 +22,7 @@ if month > 12 || month < 1
   exit
 end
 
-if day > months[month-1] || day <= 0
+if day > months[month - 1] || day <= 0
   puts "!!! Введен некорректный день месяца !!!"
   exit
 end
@@ -30,9 +30,7 @@ end
 date_number = day
 
 if month > 1
-  (month - 1).times do |index|
-    date_number += months[index]
-  end
+  date_number += months.take(month - 1).sum
 end
 
 puts "Порядковый номер даты: #{date_number}. (Год #{leap})"

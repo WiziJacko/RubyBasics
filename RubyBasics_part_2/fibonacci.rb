@@ -1,11 +1,11 @@
 # Заполнить массив числами фибоначчи до 100
 
-fib = []
-fib << 0
-fib << 1
+fib = [0, 1]
 
-until fib[-1] + fib[-2] > 100
-  fib << fib[-1] + fib[-2]
+loop do
+  next_fib_number = fib[-1] + fib[-2]
+  break if next_fib_number > 100
+  fib << next_fib_number
 end
 
 puts fib

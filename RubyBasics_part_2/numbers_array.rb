@@ -2,10 +2,6 @@
 
 arr = []
 
-(10..100).each do |num|
-  if num % 5 == 0
-    arr << num
-  end
-end
+(10..100).step(5).each { |num| arr << num }
 
 puts arr
