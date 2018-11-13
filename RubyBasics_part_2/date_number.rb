@@ -7,7 +7,7 @@ leap = "не високосный"
 print "Введите год: "
 year = gets.to_i
 
-if year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)
+if year % 400 == 0 || year % 4 == 0 && year % 100 != 0
   months[1] = 29
   leap = "високосный"
 end
@@ -29,8 +29,6 @@ end
 
 date_number = day
 
-if month > 1
   date_number += months.take(month - 1).sum
-end
 
 puts "Порядковый номер даты: #{date_number}. (Год #{leap})"

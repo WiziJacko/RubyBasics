@@ -6,9 +6,7 @@ vowels_arr = %w[а е ё и о у ы э ю я]
 vowels_hash = {}
 
 alphabet.each.with_index(1) do |value, index|
-  if vowels_arr.include?(value)
-    vowels_hash[value] = index
-  end
+  vowels_hash[value] = index if vowels_arr.include?(value)
 end
 
 puts vowels_hash
