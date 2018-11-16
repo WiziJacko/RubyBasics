@@ -1,6 +1,6 @@
 class Station
 
-  attr_reader :name
+  attr_reader :name, :trains
 
   def initialize(name)
     @name = name
@@ -11,32 +11,12 @@ class Station
     @trains << train
   end
 
-  def trains
-    if @trains.empty?
-      puts "Сейчас на станции нет поездов"
-    else
-      puts "Список поездов на станции:"
-	  @trains.each {|train| puts "Номер: #{train.number}, Тип: #{train.type}"}
-	end
-  end
-
-  def trains_by_type
-    if @trains.empty?
-      puts "Сейчас на станции нет поездов"
-    else
-      puts "Список грузовых поездов:"
-      @trains.each {|train| puts "Номер: #{train.number}" if train.type == 'Грузовой'}
-      puts "Список пассажирских поездов:"
-      @trains.each {|train| puts "Номер: #{train.number}" if train.type == 'Пассажирский'}
-    end
+  def trains_by_type(type)
+    @trains.each { |train| puts train if train.type == type }
   end
 
   def train_out(train)
-    if @trains.include?(train)
-      @trains.delete(train)
-    else
-      puts "Поезд #{train.number} не находится на станции"
-    end
+    @trains.delete(train)
   end
 
 end

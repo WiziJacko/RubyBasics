@@ -7,29 +7,23 @@ class Route
   end
 
   def add_station(station)
-  	if @stations.include?(station)
-      puts "Станция уже находится в маршруте"
-    else
+  	if @stations.include?(station) == false
       @stations.insert(-2, station)
-      puts "В марщрут добавлена станция #{station.name}"
-      self.stations
+      self.show_stations
     end
   end
 
   def delete_station(station)
-    if @stations.include?(station) && station != @stations[0] && station != @stations[-1]
+    if station != @stations[0] && station != @stations[-1]
       @stations.delete(station)
-      puts "Станция #{station.name} удалена из маршрута"
-      self.stations
-    else
-      puts "Станцию #{station.name} нельзя исключить из маршрута"
+      self.show_stations
     end
   end
 
-  def all_stations
+  def show_stations
     puts "Список станций маршрута:"
     puts "--------------"
-    @stations.each {|station| puts station.name}
+    @stations.each { |station| puts station.name }
     puts "--------------"
   end
 
