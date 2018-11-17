@@ -7,12 +7,10 @@ class Train
     @type = type
     @carriages = carriages
     @speed = 0
-    @current_station
-    @route
   end
 
-  def speed_up
-    @speed += 20
+  def speed_up(value)
+    @speed += value
   end
 
   def stop(value)
@@ -38,40 +36,39 @@ class Train
   def get_route(route)
     @route = route
     @current_station = 0
-    self.route.stations[0].train_in(self)
+    @route.stations[0].train_in(self)
   end
 
   def current_station
-    self.route.stations[@current_station]
+    return if @route.nil?
+    @route.stations[@current_station]
   end
 
   def previous_station
+    return if @route.nil?
     if @current_station != 0
-      self.route.stations[@current_station - 1]
+      @route.stations[@current_station - 1]
     end
   end
 
   def next_station
-    if @current_station != self.route.stations.size - 1
-      self.route.stations[@current_station + 1]
-    end
+    return if @route.nil?
+    @route.stations[@current_station + 1]
   end
 
   def go_next_station
-    if @current_station != self.route.stations.size - 1
-      self.route.stations[@current_station].train_out(self)
-      @current_station += 1
-      self.route.stations[@current_station].train_in(self)
-      self.route.stations[@current_station]
-    end
+    return if next_station.nil?
+    current_station.train_out(self)
+    next_station.train_in(self)
+    @current_station += 1
   end
 
   def go_previous_station
-    if @current_station != 0
-      self.route.stations[@current_station].train_out(self)
+    if !@route.nil? && @current_station != 0 
+      @route.stations[@current_station].train_out(self)
       @current_station -= 1
-      self.route.stations[@current_station].train_in(self)
-      self.route.stations[@current_station]
+      @route.stations[@current_station].train_in(self)
+      @route.stations[@current_station]
     end
   end
 

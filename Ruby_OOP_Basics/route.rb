@@ -7,19 +7,16 @@ class Route
   end
 
   def add_station(station)
-  	if @stations.include?(station) == false
-      @stations.insert(-2, station)
-      self.show_stations
-    end
+   return if @stations.include?(station)
+    @stations.insert(-2, station)
   end
 
   def delete_station(station)
-    if station != @stations[0] && station != @stations[-1]
+  	if station != @stations[0] && station != @stations[-1]
       @stations.delete(station)
-      self.show_stations
     end
   end
-
+ 
   def show_stations
     puts "Список станций маршрута:"
     puts "--------------"
