@@ -13,7 +13,7 @@ class Train
     @speed += value
   end
 
-  def stop(value)
+  def speed_down(value)
     if @speed - value < 0 
       @speed = 0
     else
@@ -64,12 +64,10 @@ class Train
   end
 
   def go_previous_station
-    if !@route.nil? && @current_station != 0 
-      @route.stations[@current_station].train_out(self)
-      @current_station -= 1
-      @route.stations[@current_station].train_in(self)
-      @route.stations[@current_station]
-    end
+    return if previous_station.nil?
+    current_station.train_out(self)
+    previous_station.train_in(self)
+    @current_station -= 1
   end
 
 end
